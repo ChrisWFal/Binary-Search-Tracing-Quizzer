@@ -10,6 +10,7 @@ public class Quizzer
 	static int answer;
 	static int questionCount = 0;
 	static int correctCount = 0;
+	static String keepPlaying;
 
 	public static void main(String[] args)
 		{
@@ -69,34 +70,77 @@ public class Quizzer
 		int left = 0;
 		int right = myArray.size() - 1;
 		
-		Scanner userInput1 = new Scanner (System.in);
-		answer = userInput1.nextInt();
-		
-		System.out.println("What is left?");
-		if(answer == left)
-			{
-			questionCount ++;
-			correctCount ++;
-			}
-		else
-			{
-			questionCount ++;
-			}
-		System.out.println("What is right?");
-		answer = userInput1.nextInt();
-		if(answer == right)
-			{
-			questionCount++;
-			correctCount++;
-			}
-		else
-			{
-			questionCount++;
-			}
-				
 		while(left <= right)
 			{
 			int middle = (left + right)/2;
+			
+			System.out.println("What is left?");
+			
+			Scanner userInput1 = new Scanner (System.in);
+			answer = userInput1.nextInt();
+			
+			if(answer == left)
+				{
+				questionCount ++;
+				correctCount ++;
+				}
+			else
+				{
+				questionCount ++;
+				}
+			System.out.println("What is right?");
+			answer = userInput1.nextInt();
+			if(answer == right)
+				{
+				questionCount++;
+				correctCount++;
+				}
+			else
+				{
+				questionCount++;
+				}
+			System.out.println("What is the middle?");
+			answer = userInput1.nextInt();
+			if(answer == middle)
+				{
+				questionCount++;
+				correctCount++;
+				}
+			else
+				{
+				questionCount++;
+				}
+			System.out.println("What is myArray[middle]?");
+			answer = userInput1.nextInt();
+			if(answer == target)
+				{
+				System.out.println("Congrats! You're correct!");
+				System.out.println("You got " + correctCount + " out of the " + questionCount + "questions correct.");
+				System.out.println("Would you like to continue? Yes or no");
+				keepPlaying = userInput1.nextLine();
+				if(keepPlaying .equals("yes"))
+					{
+					inputNumber();
+					}
+				else
+					{
+					System.exit(0);
+					}
+				}
+//			else
+//				{
+//				System.out.println("Sorry you didnt get the answer right... do you want to keep playing? Yes or no");
+//				keepPlaying = userInput1.nextLine();
+//				if(keepPlaying .equals("yes"))
+//					{
+//					inputNumber();
+//					}
+//				else
+//					{
+//					System.exit(0);
+//					}
+//				}
+			
 			
 			if(target < (int)myArray.get(middle))
 				{
